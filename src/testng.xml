@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" >
+
+    <parameter name="password" value="aB123456"/>
+    <parameter name="email1" value="chase@vesnaaa.onmicrosoft.com"/>
+    <parameter name="startUrl" value="https://vp-smc-qa.azurewebsites.net/Login"/>
+    <parameter name="implicitlyWait.ms" value="30000"/>
+
+    <test name="Regression1">
+        <classes>
+            <class name="com.smartcontact.demo.TestLoginAndLanding"/>
+                <!--<methods>
+                    <include name="createNewContactTest"/>
+                    <include name="newDropdownListCheck"/>
+                </methods>-->
+            <!--</class>-->
+
+            </classes>
+    </test>
+</suite>
