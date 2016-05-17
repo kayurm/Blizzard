@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+
 import java.util.ArrayList;
 
 /**
@@ -59,6 +60,18 @@ public class TestLoginAndLanding extends BaseTest{
         Thread.sleep(1000);
         //если кликнуть кансел то доп.попап с подтверждением
         contactPage.clickDiscardChanges();
+
+    }
+
+    public void emptyContactSaveCheck() throws InterruptedException {
+        LandingPage landingPage = new LandingPage(getDriver());
+        landingPage.clickContact();
+
+        ContactPage contactPage = new ContactPage(getDriver());
+        contactPage.clickSave();
+
+        Assert.assertEquals(contactPage.getRequiredFirstNameMessage(),"First name is required");
+
     }
 
 }

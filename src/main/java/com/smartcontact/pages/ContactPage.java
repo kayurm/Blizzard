@@ -32,6 +32,9 @@ public class ContactPage {
     @FindBy (id="close-discard-changes-discard-button")
     private WebElement discardChangesButton;
 
+    @FindBy (xpath=".//*[contains(@class,'ms-Panel-contentInner')]//*[contains(Text(),'First name is required')]")
+    private WebElement requiredFirstNameMessage;
+
     //constructor
     public ContactPage (WebDriver driver){
         this.driver=driver;
@@ -64,6 +67,10 @@ public class ContactPage {
 
     public void clickDiscardChanges(){
         discardChangesButton.click();
+    }
+
+    public String getRequiredFirstNameMessage(){
+        return requiredFirstNameMessage.getText();
     }
 
 }
