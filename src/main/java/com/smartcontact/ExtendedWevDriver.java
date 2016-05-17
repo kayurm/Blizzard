@@ -32,11 +32,11 @@ public class ExtendedWevDriver implements WebDriver {
         driver.manage().window().maximize();
     }
 
-    private void turnImplicitlyWaitOff() {
+    public void turnImplicitlyWaitOff() {
         this.manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
     }
 
-    private void turnImplicitlyWaitOn() {
+    public void turnImplicitlyWaitOn() {
         this.manage().timeouts().implicitlyWait(getImplicitlyWait(), TimeUnit.MILLISECONDS);
     }
 

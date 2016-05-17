@@ -58,7 +58,7 @@ public class BaseTest {
         return email1;
     }
 
-    public WebDriver getDriver() {
+    public ExtendedWevDriver getDriver() {
         return driver;
     }
 

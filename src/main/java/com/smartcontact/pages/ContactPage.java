@@ -1,5 +1,6 @@
 package com.smartcontact.pages;
 
+import com.smartcontact.ExtendedWevDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
  * Created by The on 28.04.2016.
  */
 public class ContactPage {
-    private WebDriver driver;
+    private ExtendedWevDriver driver;
 
     @FindBy(id="FirstName")
     private WebElement firstName;
@@ -36,7 +37,7 @@ public class ContactPage {
     private WebElement requiredFirstNameMessage;
 
     //constructor
-    public ContactPage (WebDriver driver){
+    public ContactPage (ExtendedWevDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver,this);
     }
