@@ -19,8 +19,6 @@ public class TestLoginAndLanding extends BaseTest{
 
     private ArrayList expectedList = new ArrayList();
 
-@BeforeMethod
-
     @Test
     public void newDropdownListCheck() throws InterruptedException {
         ArrayList actualList = new ArrayList();

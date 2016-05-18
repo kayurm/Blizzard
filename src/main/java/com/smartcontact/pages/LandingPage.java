@@ -20,7 +20,6 @@ public class LandingPage {
 
     private ExtendedWevDriver driver;
     private Wait<WebDriver> wait;
-    private final String newObjectListLocator = ".//*[contains(@class,'ms-CommandBar-overflowMenu')]//a[contains(@class,'ng-binding')]";
 
     private final int timeOutInSeconds = 60;
     private final int sleepInMillis = 500;
@@ -30,8 +29,11 @@ public class LandingPage {
 
 
     //@FindBys({@FindBy (xpath = ".//*[contains(@class,'is-open')]//*[contains(text(),'Contact')]/../.."), @FindBy(className = "ng-binding" )})
-    @FindBy (xpath = newObjectListLocator)
+    @FindBy (xpath = ".//*[contains(@class,'ms-CommandBar-overflowMenu')]//a[contains(@class,'ng-binding')]")
     private List<WebElement> newObjectList;
+
+    @FindBy (xpath = ".//*[contains(@class,'ms-CommandBar-overflowMenu')]//*[contains(text(),'Contact')]")
+    private WebElement contactButton;
 
     //constructor
     public LandingPage(ExtendedWevDriver driver){
@@ -55,8 +57,15 @@ public class LandingPage {
     }
 
     //TODO change this logic GET(0) recall it
-    public void clickContact() throws InterruptedException{
+/*    public void clickContact() throws InterruptedException{
         getNewObjectList().get(0).click();
+
+    }*/
+
+    public void clickContact() throws InterruptedException{
+        newDropdownListClick();
+        waitUntilElementAppearVisible(contactButton);
+        contactButton.click();
 
     }
 
