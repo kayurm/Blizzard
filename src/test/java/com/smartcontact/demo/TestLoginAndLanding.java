@@ -6,9 +6,7 @@ import com.smartcontact.pages.ContactPage;
 import com.smartcontact.pages.LandingPage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 
 import java.util.ArrayList;
 
@@ -61,14 +59,27 @@ public class TestLoginAndLanding extends BaseTest{
 
     }
 
+
+    @Test
     public void emptyContactSaveCheck() throws InterruptedException {
         LandingPage landingPage = new LandingPage(getDriver());
         landingPage.clickContact();
 
         ContactPage contactPage = new ContactPage(getDriver());
-        contactPage.clickSave();
 
+        //JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        //jse.executeScript("arguments[0].focus()", getWrappedElement());
+        //jse.executeScript("window.scrollBy(0,-250)", "");
+
+        contactPage.clickSave();
+        Thread.sleep(1000);
         Assert.assertEquals(contactPage.getRequiredFirstNameMessage(),"First name is required");
+        Assert.assertEquals(contactPage.getRequiredLastNameMessage(),"Last name is required");
+        Assert.assertEquals(contactPage.getRequiredEmailOrPhone(),"Either email or phone should be specified.");
+
+        Assert.assertTrue(contactPage.checkFirstNameFieldIsDisplayed());
+
+        contactPage.clickCancel();
 
     }
 

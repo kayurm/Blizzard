@@ -1,7 +1,6 @@
 package com.smartcontact.pages;
 
 import com.smartcontact.ExtendedWevDriver;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -33,8 +32,16 @@ public class ContactPage {
     @FindBy (id="close-discard-changes-discard-button")
     private WebElement discardChangesButton;
 
-    @FindBy (xpath=".//*[contains(@class,'ms-Panel-contentInner')]//*[contains(Text(),'First name is required')]")
+    @FindBy (xpath="//div[contains(@invalid,'createEditContact.FirstName.$error.required')]")
     private WebElement requiredFirstNameMessage;
+    //div[contains(@class,'ms-Panel-contentInner')]//
+    // (xpath="//div[contains(Text(),'First name is required')]")
+
+    @FindBy (xpath="//div[contains(@invalid,'createEditContact.LastName.$error.required')]")
+    private WebElement requiredLastNameMessage;
+
+    @FindBy (xpath="//div[contains(@invalid,'createEditContact.$error.requiredFields')]")
+    private WebElement requiredEmailOrPhone;
 
     //constructor
     public ContactPage (ExtendedWevDriver driver){
@@ -74,4 +81,15 @@ public class ContactPage {
         return requiredFirstNameMessage.getText();
     }
 
+    public String getRequiredLastNameMessage(){
+        return requiredLastNameMessage.getText();
+    }
+
+    public String getRequiredEmailOrPhone(){
+        return requiredEmailOrPhone.getText();
+    }
+
+    public boolean checkFirstNameFieldIsDisplayed (){
+       return firstName.isDisplayed();
+    }
 }

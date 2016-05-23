@@ -1,8 +1,6 @@
 package com.smartcontact;
 
 import com.smartcontact.pages.LoginSmartContactsPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -38,7 +36,7 @@ public class BaseTest {
         Thread.sleep(1000);
         loginSmartContactsPage.clickSubmit();
 
-        Thread.sleep(20000);
+        Thread.sleep(10000);
     }
 
     @AfterClass
