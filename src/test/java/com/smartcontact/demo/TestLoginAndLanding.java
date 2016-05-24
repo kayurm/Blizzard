@@ -61,15 +61,28 @@ public class TestLoginAndLanding extends BaseTest{
 
     }
 
-    public void emptyContactSaveCheck() throws InterruptedException {
+    @Test
+    public void emptyContactSaveCheck() {
         LandingPage landingPage = new LandingPage(getDriver());
         landingPage.clickContact();
 
         ContactPage contactPage = new ContactPage(getDriver());
-        contactPage.clickSave();
 
+        //JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        //jse.executeScript("arguments[0].focus()", getWrappedElement());
+        //jse.executeScript("window.scrollBy(0,-250)", "");
+
+        contactPage.clickSave();
         Assert.assertEquals(contactPage.getRequiredFirstNameMessage(),"First name is required");
+        Assert.assertEquals(contactPage.getRequiredLastNameMessage(),"Last name is required");
+        Assert.assertEquals(contactPage.getRequiredEmailOrPhone(),"Either email or phone should be specified.");
+
+        Assert.assertTrue(contactPage.checkFirstNameFieldIsDisplayed());
+
+        contactPage.clickCancel();
 
     }
+
+
 
 }

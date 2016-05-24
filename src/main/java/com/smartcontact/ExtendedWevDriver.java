@@ -1,6 +1,7 @@
 package com.smartcontact;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by alexanderch on 05/05/2016.
  */
-public class ExtendedWevDriver implements WebDriver {
+public class ExtendedWevDriver implements WebDriver, JavascriptExecutor {
     private WebDriver driver;
     private long implicitlyWait;
 
@@ -111,6 +112,20 @@ public class ExtendedWevDriver implements WebDriver {
     @Override
     public Options manage() {
         return driver.manage();
+    }
+
+    @Override
+    public Object executeScript(String script, Object... args) {
+        return ((JavascriptExecutor) driver).executeScript(script, args);
+    }
+
+    @Override
+    public Object executeAsyncScript(String script, Object... args) {
+        return ((JavascriptExecutor) driver).executeAsyncScript(script, args);
+    }
+
+    public void focus(WebElement element) {
+        executeScript("arguments[0].focus()", element);
     }
 
 }

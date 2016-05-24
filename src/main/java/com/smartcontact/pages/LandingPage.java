@@ -1,5 +1,6 @@
 package com.smartcontact.pages;
 
+import com.smartcontact.BaseTest;
 import com.smartcontact.ExtendedWevDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -16,13 +17,7 @@ import java.util.List;
 /**
  * Created by The on 17.04.2016.
  */
-public class LandingPage {
-
-    private ExtendedWevDriver driver;
-    private Wait<WebDriver> wait;
-
-    private final int timeOutInSeconds = 60;
-    private final int sleepInMillis = 500;
+public class LandingPage extends BasePage{
 
     @FindBy (xpath = ".//*[@class='ms-CommandBarItem-linkWrapper']//*[contains(text(),'New')]/../i")
     private WebElement newButton;
@@ -37,11 +32,8 @@ public class LandingPage {
 
     //constructor
     public LandingPage(ExtendedWevDriver driver){
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver,this);
-        // @param timeOutInSeconds The timeout in seconds when an expectation is called
-        // @param sleepInMillis The duration in milliseconds to sleep between polls.
-        wait = new WebDriverWait(driver, timeOutInSeconds, sleepInMillis);
     }
 
     //method
@@ -62,44 +54,10 @@ public class LandingPage {
 
     }*/
 
-    public void clickContact() throws InterruptedException{
+    public void clickContact(){
         newDropdownListClick();
         waitUntilElementAppearVisible(contactButton);
         contactButton.click();
 
     }
-
-
-
-    public WebElement waitUntilElementAppearVisible(WebElement webElement) {
-        driver.turnImplicitlyWaitOff();
-        WebElement result;
-        try {
-            result = wait.until(ExpectedConditions.visibilityOf(webElement));
-        } catch (TimeoutException timeException) {
-            driver.turnImplicitlyWaitOn();
-            throw new TimeoutException(timeException.getMessage() +
-                    "\nTimeOut while waitUntilElementAppearVisible " +
-                    webElement.toString(), timeException.getCause());
-        }
-        driver.turnImplicitlyWaitOn();
-        return result;
-    }
-
-    public WebElement waitUntilElementAppearVisible(By by) {
-        driver.turnImplicitlyWaitOff();
-        WebElement result;
-        try {
-            result = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-        } catch (TimeoutException timeException) {
-            driver.turnImplicitlyWaitOn();
-            throw new TimeoutException(timeException.getMessage() +
-                    "\nTimeOut while waitUntilElementAppearVisible " +
-                    by.toString(), timeException.getCause());
-        }
-        driver.turnImplicitlyWaitOn();
-        return result;
-    }
-
-
 }

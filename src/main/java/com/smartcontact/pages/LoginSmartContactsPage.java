@@ -1,5 +1,6 @@
 package com.smartcontact.pages;
 
+import com.smartcontact.ExtendedWevDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,8 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by The on 17.04.2016.
  */
-public class LoginSmartContactsPage {
-    private WebDriver driver;
+public class LoginSmartContactsPage extends BasePage{
 
     //TODO!!!!!!!!!!!!!!!!!!!!!
     @FindBy (className ="ms-Button-label")
@@ -25,8 +25,8 @@ public class LoginSmartContactsPage {
     private WebElement signInSubmitButton;
 
     //constructor
-    public LoginSmartContactsPage (WebDriver driver){
-        this.driver = driver;
+    public LoginSmartContactsPage (ExtendedWevDriver driver){
+        super(driver);
         PageFactory.initElements(driver,this);
     }
 

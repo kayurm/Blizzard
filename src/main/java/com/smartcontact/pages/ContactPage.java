@@ -9,8 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by The on 28.04.2016.
  */
-public class ContactPage {
-    private ExtendedWevDriver driver;
+public class ContactPage extends BasePage{
 
     @FindBy(id="FirstName")
     private WebElement firstName;
@@ -33,12 +32,20 @@ public class ContactPage {
     @FindBy (id="close-discard-changes-discard-button")
     private WebElement discardChangesButton;
 
-    @FindBy (xpath=".//*[contains(@class,'ms-Panel-contentInner')]//*[contains(Text(),'First name is required')]")
+    @FindBy (xpath="//div[contains(@invalid,'createEditContact.FirstName.$error.required')]")
     private WebElement requiredFirstNameMessage;
+    //div[contains(@class,'ms-Panel-contentInner')]//
+    // (xpath="//div[contains(Text(),'First name is required')]")
+
+    @FindBy (xpath="//div[contains(@invalid,'createEditContact.LastName.$error.required')]")
+    private WebElement requiredLastNameMessage;
+
+    @FindBy (xpath="//div[contains(@invalid,'createEditContact.$error.requiredFields')]")
+    private WebElement requiredEmailOrPhone;
 
     //constructor
     public ContactPage (ExtendedWevDriver driver){
-        this.driver=driver;
+        super(driver);
         PageFactory.initElements(driver,this);
     }
 
@@ -59,7 +66,12 @@ public class ContactPage {
     }
 
     public void clickSave (){
+        focus(saveButton);
         saveButton.click();
+    }
+
+    public String getToolTipSaveButton() {
+        return getToolTip(saveButton);
     }
 
     public void clickCancel (){
@@ -71,7 +83,20 @@ public class ContactPage {
     }
 
     public String getRequiredFirstNameMessage(){
+
         return requiredFirstNameMessage.getText();
+    }
+
+    public String getRequiredLastNameMessage(){
+        return requiredLastNameMessage.getText();
+    }
+
+    public String getRequiredEmailOrPhone(){
+        return requiredEmailOrPhone.getText();
+    }
+
+    public boolean checkFirstNameFieldIsDisplayed (){
+        return isDisplayed(firstName);
     }
 
 }
