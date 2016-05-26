@@ -9,12 +9,11 @@
 
     <test name="Regression1">
         <classes>
-            <class name="com.smartcontact.demo.TestLoginAndLanding"/>
-                <!--<methods>
-                    <include name="createNewContactTest"/>
-                    <include name="newDropdownListCheck"/>
-                </methods>-->
-            <!--</class>-->
+            <class name="com.smartcontact.demo.TestLoginAndLanding">
+                <methods>
+                    <include name="countTest"/>
+                </methods>
+            </class>
 
             </classes>
     </test>

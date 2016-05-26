@@ -1,18 +1,22 @@
 package com.smartcontact.pages;
 
 import com.smartcontact.ExtendedWevDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by The on 28.04.2016.
  */
-public class ContactPage {
-    private ExtendedWevDriver driver;
+public class ContactPage extends  BasePage{
 
     @FindBy(id="FirstName")
-    private WebElement firstName;
+    private WebElement firstNameField;
 
     @FindBy (id="LastName")
     private WebElement lastName;
@@ -43,14 +47,18 @@ public class ContactPage {
     @FindBy (xpath="//div[contains(@invalid,'createEditContact.$error.requiredFields')]")
     private WebElement requiredEmailOrPhone;
 
+    @FindBy(xpath = ".//*[@name='createEditContact']//div[@class='smc-Form-Row smc-Form-Width-Small']")
+    private WebElement validationContainer;
+
     //constructor
     public ContactPage (ExtendedWevDriver driver){
-        this.driver=driver;
+        super(driver);
         PageFactory.initElements(driver,this);
     }
 
     public void typeFirstName (String firstName){
-        this.firstName.sendKeys(firstName);
+        focus(firstNameField);
+        firstNameField.sendKeys(firstName);
     }
 
     public void typeLastName (String lastName){
@@ -66,7 +74,12 @@ public class ContactPage {
     }
 
     public void clickSave (){
+        focus(saveButton);
         saveButton.click();
+    }
+
+    public String getToolTipSaveButton() {
+        return getToolTip(saveButton);
     }
 
     public void clickCancel (){
@@ -78,6 +91,7 @@ public class ContactPage {
     }
 
     public String getRequiredFirstNameMessage(){
+
         return requiredFirstNameMessage.getText();
     }
 
@@ -90,6 +104,24 @@ public class ContactPage {
     }
 
     public boolean checkFirstNameFieldIsDisplayed (){
-       return firstName.isDisplayed();
+       return isDisplayed(firstNameField);
     }
+
+    public boolean isValidationsDisplayed() {
+        return isDisplayed(validationContainer);
+    }
+
+    public List<WebElement> validationList() {
+        List<WebElement> resultList = new ArrayList<WebElement>();
+        waitUntilElementAppearVisible(validationContainer);
+        for(WebElement element : validationContainer.findElements(By.className("smc-Error"))){
+            if (isQDisplayed(element))
+                resultList.add(element);
+        }
+        return  resultList;
+    }
+
+
+
+
 }

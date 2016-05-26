@@ -83,4 +83,24 @@ public class TestLoginAndLanding extends BaseTest{
 
     }
 
+    @Test
+    public void countTest() throws InterruptedException {
+        LandingPage landingPage = new LandingPage(getDriver());
+        landingPage.clickContact();
+
+        ContactPage contactPage = new ContactPage(getDriver());
+
+        //JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        //jse.executeScript("arguments[0].focus()", getWrappedElement());
+        //jse.executeScript("window.scrollBy(0,-250)", "");
+
+        contactPage.clickSave();
+
+        System.out.println(contactPage.validationList().size());
+        System.out.println(contactPage.validationList().get(0).getText());
+        Thread.sleep(1000);
+
+
+    }
+
 }
