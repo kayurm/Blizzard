@@ -4,6 +4,7 @@ package com.smartcontact.demo;
 import com.smartcontact.BaseTest;
 import com.smartcontact.pages.ContactPage;
 import com.smartcontact.pages.LandingPage;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -26,7 +27,6 @@ public class TestLandingPageRibbon extends BaseTest{
         for (WebElement element1 : landingPage.getNewObjectList()){
             actualList.add(element1.getAttribute("innerText"));
         }
-
         //filling in of Expected list
         expectedList.add("Contact");
         expectedList.add("Company");
@@ -44,9 +44,9 @@ public class TestLandingPageRibbon extends BaseTest{
 
         ContactPage contactPage = new ContactPage(getDriver());
 
-        //JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
         //jse.executeScript("arguments[0].focus()", getWrappedElement());
-        //jse.executeScript("window.scrollBy(0,-250)", "");
+        jse.executeScript("window.scrollBy(0,-250)", "");
 
         contactPage.clickSave();
 

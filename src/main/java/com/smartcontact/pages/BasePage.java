@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class BasePage {
     private ExtendedWevDriver driver;
-    private Wait<WebDriver> wait;
+    private Wait<WebDriver> wait; //explicit wait
 
     private final int timeOutInSeconds = 60;
     private final int sleepInMillis = 500;

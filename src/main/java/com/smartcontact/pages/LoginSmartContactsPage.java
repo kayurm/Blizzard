@@ -1,7 +1,6 @@
 package com.smartcontact.pages;
 
 import com.smartcontact.ExtendedWevDriver;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,25 +10,19 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class LoginSmartContactsPage extends BasePage {
 
-    //TODO!!!!!!!!!!!!!!!!!!!!!
-    @FindBy (className ="ms-Button-label")
-    private WebElement initialLoginButton;
+    @FindBy (className ="ms-Button-label") private WebElement initialLoginButton;
 
-    @FindBy (id = "cred_userid_inputtext")
-    private WebElement userNameInputField;
+    @FindBy (id = "cred_userid_inputtext") private WebElement userNameInputField;
 
-    @FindBy (id = "cred_password_inputtext")
-    private WebElement passwordInputField;
+    @FindBy (id = "cred_password_inputtext") private WebElement passwordInputField;
 
-    @FindBy (id = "cred_sign_in_button")
-    private WebElement signInSubmitButton;
+    @FindBy (id = "cred_sign_in_button") private WebElement signInSubmitButton;
 
     //constructor
     public LoginSmartContactsPage (ExtendedWevDriver driver){
         super(driver);
         PageFactory.initElements(driver,this);
     }
-
     //methods
     public void clickInitialLogIn (){
         initialLoginButton.click();
@@ -46,5 +39,4 @@ public class LoginSmartContactsPage extends BasePage {
     public void clickSubmit (){
         signInSubmitButton.click();
     }
-
 }
