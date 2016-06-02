@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
  * Created by The on 01.06.2016.
  */
 public class TestNewContact extends BaseTest{
-
+//comment
     @BeforeMethod
     public void clickNewContact () throws InterruptedException {
         LandingPage landingPage = new LandingPage(getDriver());
